@@ -66,11 +66,12 @@ class _ChartsPageState extends State<ChartsPage> {
               final _tooltipKey = GlobalKey<OverlayWindowContainerState>();
               Rect rect;
               return AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 1.5,
                 child: OverlayWindowContainer(
                   key: _tooltipKey,
                   backgroundColor: randomColor,
                   barrierDismissible: false,
+                  direction: Axis.horizontal,
                   builder: (context) {
                     return Container(
                       width: 100,
@@ -108,6 +109,10 @@ class _ChartsPageState extends State<ChartsPage> {
                       }
                       rect = region;
                       _tooltipKey.currentState?.show(region);
+                    },
+                    onActualRangeChanged: (rangeChangedArgs) {
+                      rect = null;
+                      _tooltipKey.currentState?.dismiss();
                     },
                     zoomPanBehavior: ZoomPanBehavior(
                       enablePanning: true,
