@@ -150,14 +150,14 @@ packages:
       name: syncfusion_flutter_charts
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "19.1.59"
+    version: "19.1.63"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "19.1.59"
+    version: "19.1.63"
   term_glyph:
     dependency: transitive
     description:

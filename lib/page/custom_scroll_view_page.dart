@@ -104,6 +104,7 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
   }
 }
 
+// ignore: unused_element
 class _SliverSeparatorListView extends StatelessWidget {
   const _SliverSeparatorListView({
     Key key,

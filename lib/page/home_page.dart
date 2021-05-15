@@ -37,6 +37,12 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text('CustomScrollView'),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, 'chartsBug');
+              },
+              child: const Text('Charts Bug'),
+            ),
           ],
         ),
       ),

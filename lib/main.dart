@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_charts/page/charts_bug_page.dart';
 import 'package:flutter_charts/page/charts_page.dart';
 import 'package:flutter_charts/page/custom_scroll_view_page.dart';
 import 'package:flutter_charts/page/home_page.dart';
@@ -29,6 +30,7 @@ class FlutterCharts extends StatelessWidget {
         'popupWindow': (context) => PopupWindowPage(),
         'charts': (context) => ChartsPage(),
         'customScrollView': (context) => CustomScrollViewPage(),
+        'chartsBug': (context) => ChartsBugPage(),
       },
     );
   }
