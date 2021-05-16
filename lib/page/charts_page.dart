@@ -70,7 +70,7 @@ class _ChartsPageState extends State<ChartsPage> {
                 child: OverlayWindowContainer(
                   key: _tooltipKey,
                   backgroundColor: randomColor,
-                  barrierDismissible: false,
+                  // barrierDismissible: false,
                   direction: Axis.horizontal,
                   builder: (context) {
                     return Container(
@@ -78,64 +78,63 @@ class _ChartsPageState extends State<ChartsPage> {
                       height: 100,
                     );
                   },
-                  child: SfCartesianChart(
-                    title: ChartTitle(text: 'Flutter Chart'),
-                    legend: Legend(isVisible: true),
-                    tooltipBehavior: TooltipBehavior(
-                      enable: false,
-                    ),
-                    borderWidth: 0,
-                    borderColor: Colors.transparent,
-                    primaryXAxis: CategoryAxis(
-                      majorGridLines: const MajorGridLines(
-                        width: 0,
-                      ),
-                    ),
-                    primaryYAxis: NumericAxis(),
-                    enableAxisAnimation: true,
-                    selectionGesture: ActivationMode.singleTap,
-                    selectionType: SelectionType.series,
-                    onPointTapped: (pointTapArgs) {
-                      // final points = pointTapArgs.dataPoints;
-                      // final point = points[pointTapArgs.pointIndex] as CartesianChartPoint<dynamic>;
-                      // final region = point.region.translate(10, 30);
-                      // _tooltipKey.currentState?.show(region);
-                    },
-                    onTrackballPositionChanging: (trackballArgs) {
-                      final point = trackballArgs.chartPointInfo.chartDataPoint;
-                      final region = point.region.translate(10, 30);
-                      if (rect == region) {
-                        return;
-                      }
-                      rect = region;
-                      _tooltipKey.currentState?.show(region);
-                    },
-                    onActualRangeChanged: (rangeChangedArgs) {
-                      rect = null;
-                      _tooltipKey.currentState?.dismiss();
-                    },
-                    zoomPanBehavior: ZoomPanBehavior(
-                      enablePanning: true,
-                      zoomMode: ZoomMode.x,
-                      selectionRectBorderWidth: 2,
-                      selectionRectBorderColor: Colors.red,
-                      selectionRectColor: Colors.green,
-                      enablePinching: true,
-                      // maximumZoomLevel: 60000,
-                      enableSelectionZooming: false,
-                      enableDoubleTapZooming: true,
-                    ),
-                    trackballBehavior: TrackballBehavior(
-                      enable: true,
-                      shouldAlwaysShow: true,
-                      lineWidth: 2,
-                      lineColor: Colors.green,
-                      activationMode: ActivationMode.singleTap,
-                      tooltipSettings: const InteractiveTooltip(
+                  onDismiss: () {
+                    rect = null;
+                  },
+                  child: PointerInterceptor(
+                    child: SfCartesianChart(
+                      title: ChartTitle(text: 'Flutter Chart'),
+                      legend: Legend(isVisible: true),
+                      tooltipBehavior: TooltipBehavior(
                         enable: false,
                       ),
+                      borderWidth: 0,
+                      borderColor: Colors.transparent,
+                      primaryXAxis: CategoryAxis(
+                        majorGridLines: const MajorGridLines(
+                          width: 0,
+                        ),
+                      ),
+                      primaryYAxis: NumericAxis(),
+                      enableAxisAnimation: true,
+                      selectionGesture: ActivationMode.singleTap,
+                      selectionType: SelectionType.series,
+                      onTrackballPositionChanging: (trackballArgs) {
+                        final point = trackballArgs.chartPointInfo.chartDataPoint;
+                        final region = point.region.translate(10, 30);
+                        if (rect == region) {
+                          return;
+                        }
+                        rect = region;
+                        _tooltipKey.currentState?.show(region);
+                      },
+                      onActualRangeChanged: (rangeChangedArgs) {
+                        rect = null;
+                        _tooltipKey.currentState?.dismiss();
+                      },
+                      zoomPanBehavior: ZoomPanBehavior(
+                        enablePanning: true,
+                        zoomMode: ZoomMode.x,
+                        selectionRectBorderWidth: 2,
+                        selectionRectBorderColor: Colors.red,
+                        selectionRectColor: Colors.green,
+                        enablePinching: true,
+                        // maximumZoomLevel: 60000,
+                        enableSelectionZooming: false,
+                        enableDoubleTapZooming: true,
+                      ),
+                      trackballBehavior: TrackballBehavior(
+                        enable: true,
+                        shouldAlwaysShow: true,
+                        lineWidth: 2,
+                        lineColor: Colors.green,
+                        activationMode: ActivationMode.singleTap,
+                        tooltipSettings: const InteractiveTooltip(
+                          enable: false,
+                        ),
+                      ),
+                      series: [snapshot.data[index]],
                     ),
-                    series: [snapshot.data[index]],
                   ),
                 ),
               );
