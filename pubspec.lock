@@ -62,7 +62,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "824e0924c3c021a8c60816dde73bf133ef00ea45"
+      resolved-ref: "8fd88c5cae7f88bb26269b807f0cfe3b9c4da789"
       url: "https://github.com/changleibox/flatterer.git"
     source: git
     version: "0.0.1"

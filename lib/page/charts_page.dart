@@ -65,7 +65,6 @@ class _ChartsPageState extends State<ChartsPage> {
             itemBuilder: (context, index) {
               final _tooltipKey = GlobalKey<OverlayWindowContainerState>();
               Rect rect;
-              var _tapArgsCount = 0;
               return AspectRatio(
                 aspectRatio: 1.5,
                 child: OverlayWindowContainer(
@@ -100,16 +99,7 @@ class _ChartsPageState extends State<ChartsPage> {
                       enableAxisAnimation: true,
                       selectionGesture: ActivationMode.singleTap,
                       selectionType: SelectionType.series,
-                      onChartTouchInteractionDown: (tapArgs) {
-                        _tapArgsCount++;
-                      },
-                      onChartTouchInteractionUp: (tapArgs) {
-                        _tapArgsCount--;
-                      },
                       onTrackballPositionChanging: (trackballArgs) {
-                        if (_tapArgsCount > 0) {
-                          return;
-                        }
                         final point = trackballArgs.chartPointInfo.chartDataPoint;
                         final region = point.region.translate(10, 30);
                         if (rect == region) {
@@ -119,9 +109,6 @@ class _ChartsPageState extends State<ChartsPage> {
                         _tooltipKey.currentState?.show(region);
                       },
                       onActualRangeChanged: (rangeChangedArgs) {
-                        if (rect == null) {
-                          return;
-                        }
                         rect = null;
                         _tooltipKey.currentState?.dismiss();
                       },
