@@ -81,7 +81,9 @@ class _ChartsBugPageState extends State<ChartsBugPage> {
         },
         child: PointerInterceptor(
           child: SfCartesianChart(
-            legend: Legend(isVisible: true),
+            legend: Legend(
+              isVisible: false,
+            ),
             primaryXAxis: CategoryAxis(
               labelPlacement: LabelPlacement.onTicks,
               edgeLabelPlacement: EdgeLabelPlacement.none,
